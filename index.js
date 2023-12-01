@@ -1,6 +1,6 @@
 const express = require("express");
 const poolCompraPy = require("./ConexionBdPy");
-
+const poolCompraResto = require("./ConexionBdPy");
 
 console.log("Hola, estoy iniciando");
 
@@ -31,6 +31,17 @@ app.get('/compras/py', async (req, res) => {
         res.status(500).send("Error grave en el servidor");
     }
 });
+
+app.get('/compras/resto', async (req, res) => {
+    try {
+        const result = await poolCompraResto.query("SELECT * FROM compras");
+        res.json(result.rows);
+    } catch (error) {
+        console.error("Error grave en el servidor", error);
+        res.status(500).send("Error grave en el servidor");
+    }
+});
+
 
 /*POST PARA GUARDAR NUEVO REGISTRO */
 /*PEro, usaremos GET con fines didacticos para ejecutar directo desde el navegador */
