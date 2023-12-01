@@ -11,9 +11,6 @@ const poolCompraPy = new Pool({
 
 module.exports = poolCompraPy;
 
-const { Pool } = require("pg");
-
-
 const poolCompraResto = new Pool({
     user: 'comprauser',
     host: 'localhost',
